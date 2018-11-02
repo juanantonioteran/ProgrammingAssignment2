@@ -1,0 +1,716 @@
+makeCacheMatrix <- function(x = matrix()) {#
+#
+i <- NULL #
+#
+	set <- function(y) {#
+        x <<- y#
+        m <<- NULL#
+    }#
+#
+get <- function() x #
+#
+setinverse <- function(inverse) i <<- inverse#
+getinverse <- function() i#
+list(set = set, get = get,#
+     setinverse = setinverse,#
+     getinverse = getinverse)#
+#
+}
+cacheSolve <- function(x, ...) {#
+        ## Return a matrix that is the inverse of 'x'#
+#
+	i <- x$getinverse()#
+	if(!is.null(i)) #
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x$get()#
+	i <- solve(data, ...)#
+	x$setinverse(i)#
+	i#
+}
+cacheSolve <- function(x, ...) {#
+        ## Return a matrix that is the inverse of 'x'#
+#
+	i <- x$getinverse()#
+#
+	if(!is.null(i)){ #
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x$get()#
+	i <- solve(data, ...)#
+	x$setinverse(i)#
+	i#
+}
+x <- matrix(1:6, nrow = 2, ncol = 3)
+makeCacheMatrix(x)
+cacheSolve(x)
+cacheSolve <- function(x, ...) {#
+        ## Return a matrix that is the inverse of 'x'#
+#
+	i <- x[getinverse()]#
+#
+	if(!is.null(i)){ #//-----[needed a curly bracket here]-------#
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x$get()#
+	i <- solve(data, ...)#
+	x$setinverse(i)#
+	i#
+}
+cacheSolve(x)
+makeCacheMatrix <- function(x = matrix()) {#
+#
+i <- NULL #
+#
+	set <- function(y) {#
+        x <<- y#
+        i <<- NULL#
+    }#
+#
+get <- function() x #
+#
+setinverse <- function(inverse) i <<- solve#
+getinverse <- function() i#
+list(set = set, get = get,#
+     setinverse = setinverse,#
+     getinverse = getinverse)#
+}
+cacheSolve <- function(x, ...) {#
+        ## Return a matrix that is the inverse of 'x'#
+#
+	i <- x$getinverse()#
+#
+	if(!is.null(i)){ #//-----[needed a curly bracket here]-------#
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x$get()#
+	i <- solve(data, ...)#
+	x$setinverse(i)#
+	i#
+}
+x <- matrix(1:6, nrow = 2, ncol = 3)
+cacheSolve(x)
+cacheSolve <- function(x, ...) {#
+        ## Return a matrix that is the inverse of 'x'#
+#
+	i <- x[getinverse()]#
+#
+	if(!is.null(i)){ #//-----[needed a curly bracket here]-------#
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x[get()]#
+	i <- solve(data, ...)#
+	x[setinverse(i)]#
+	i#
+}
+cacheSolve(x)
+makeCacheMatrix(x)
+cacheSolve(x)
+cacheSolve(x)
+> makeVector <- function(x = numeric()) {#
+        m <- NULL #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL#
+            }#
+#
+        get <- function() x #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+}
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL#
+            }#
+#
+        get <- function() x #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+x <- 1:4
+makeVector(x)
+cachemean <- function(x, ...) {#
+        m <- x$getmean()#
+        if(!is.null(m)) { #//-----[needed a curly bracket here]-------#
+                message("getting cached data")#
+                return(m)#
+        }#
+        data <- x$get()#
+        m <- mean(data, ...)#
+        x$setmean(m)#
+        m#
+}
+cachemean(x)
+cachemean <- function(x, ...) {#
+        m <- [x]getmean()#
+        if(!is.null(m)) { #//-----[needed a curly bracket here]-------#
+                message("getting cached data")#
+                return(m)#
+        }#
+        data <- [x]get()#
+        m <- mean(data, ...)#
+        [x]setmean(m)#
+        m#
+}
+cachemean <- function(x, ...) {#
+        m <- [x]getmean()#
+        if(!is.null(m)) { #//-----[needed a curly bracket here]-------#
+                message("getting cached data")#
+                return(m)#
+        }#
+        data <- [x]get()#
+        m <- mean(data, ...)#
+        [x]setmean(m)#
+        m
+cachemean <- function(x, ...) {#
+        m <- [x]getmean()#
+        if(!is.null(m)) { #//-----[needed a curly bracket here]-------#
+                message("getting cached data")#
+                return(m)#
+        }#
+        data <- [x]get()#
+        m <- mean(data, ...)#
+        [x]setmean(m)#
+        m}
+makeVector(x)
+x
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print(m) #//-----[]-------#
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL#
+                    print(x) #//-----[]-------#
+                            print(y) #//-----[]-------#
+                                    print(m) #//-----[]-------#
+            }#
+#
+        get <- function() x #
+        print(get) #//-----[]-------#
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print(m) #//-----[]-------#
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL#
+            }#
+             print(x) #//-----[]-------#
+                            print(y) #//-----[]-------#
+                                    print(m) #//-----[]-------#
+#
+        get <- function() x #
+        print(get) #//-----[]-------#
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print(m) #//-----[]-------#
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+             print(x) #//-----[]-------#
+                                    print(m) #//-----[]-------#
+#
+        get <- function() x #
+        print(get) #//-----[]-------#
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print("m:" m) #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+             print("x:" x) #
+#
+        get <- function() x #
+        print("get:" get) #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+?print
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print("m:", m) #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+             print("x:", x) #
+#
+        get <- function() x #
+        print("get:", get) #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+set.seed(521)#
+t1 <- round(abs(rt(200, df = 1.8)))#
+t2 <- round(abs(rt(200, df = 1.4)))#
+table(t1, t2) # simple#
+print(table(t1, t2), zero.print = ".") # nicer to read
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print("m:"; m) #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+             print("x:"; x) #
+#
+        get <- function() x #
+        print("get:"; get) #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print("m:", m) #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+             print("x:", x) #
+#
+        get <- function() x #
+        print("get:", get) #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+        print("---------------------------------------")#
+        print(paste("m:", m)) #
+#
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+             print(paste("x:", x))#
+#
+        get <- function() x #
+        #print("get:", get) #
+#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+  print("---------------------------------------")#
+  print(paste("m: ", m)) #
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+  print(paste("x: ", x))#
+#
+        get <- function() x #
+  print(paste("get: ", get)) #---[this is a debugger line]      #
+#
+        setmean <- function(mean) m <<- mean#
+#
+print(paste("setmean: ", setmean )) #---[this is a debugger line]#
+print(paste("mean: ", mean )) #---[this is a debugger line]      #
+print(paste("m: ", m )) #---[this is a debugger line]#
+#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+             }
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+  print("---------------------------------------")#
+  print(paste("m: ", m)) #
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+  print(paste("x: ", x))#
+#
+        get <- function() x #
+        setmean <- function(mean) m <<- mean#
+#
+print("after setmean") #---[this is a debugger line]#
+print(paste("mean: ", mean )) #---[this is a debugger line]      #
+print(paste("m: ", m )) #---[this is a debugger line]#
+#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+#
+print("after getmean") #---[this is a debugger line]      #
+print(paste("m: ", m )) #---[this is a debugger line]#
+#
+}
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+        m <- NULL #
+  print("---------------------------------------")#
+  print(paste("m: ", m)) #
+            set <- function(y) {#
+                x <<- y#
+                m <<- NULL   #
+            }#
+  print(paste("x: ", x))#
+#
+        get <- function() x #
+        setmean <- function(mean) m <<- mean#
+#
+print("after setmean") #---[this is a debugger line]#
+print(paste("m: ", m )) #---[this is a debugger line]#
+#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+#
+print("after getmean") #---[this is a debugger line]      #
+print(paste("m: ", m )) #---[this is a debugger line]#
+#
+}
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(paste("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("after setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("after getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+}
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(c("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+}
+makeVector(x)
+cachemean <- function(x, ...) {#
+	m <- x$getmean()#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After x$getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	if(!is.null(m)) { #//-----[needed a curly bracket here]-------#
+	message("getting cached data")#
+	return(m)#
+	}#
+	data <- x$get()#
+	m <- mean(data, ...)#
+	x$setmean(m)#
+	m#
+}
+cachemean(x)
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(c("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+			list #---[this is a debugger line]#
+}
+makeVector(x)
+list
+mean
+makeVector
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(c("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+			print(paste("set ", set )) #---[this is a debugger line]#
+}
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(c("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+			print(c("set ", set )) #---[this is a debugger line]#
+}
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(c("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	mylist <- list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+			print(mylist) #---[this is a debugger line]#
+}
+makeVector(x)
+makeVector <- function(x = numeric()) {#
+	m <- NULL #
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("Beginning of function")  #---[this is a debugger line]#
+			print(c("x: ", x)) #---[this is a debugger line]#
+			print(paste("m: ", m))  #---[this is a debugger line]#
+	set <- function(y) {#
+		x <<- y#
+		m <<- NULL   #
+	}#
+#
+	get <- function() x #
+	setmean <- function(mean) m <<- mean#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After setmean") #---[this is a debugger line]#
+			print(paste("m: ", m )) #---[this is a debugger line]#
+#
+	getmean <- function() m#
+	list(set = set, get = get, setmean = setmean, getmean = getmean)#
+#
+			print("---------------------------------------")  #---[this is a debugger line]#
+			print("After getmean") #---[this is a debugger line]      #
+			print(paste("m: ", m )) #---[this is a debugger line]#
+}
+mean(x)
+makevector(x)
+makeVector(x)
+B <- matrix(c(1,2,3,4),2,2)
+b
+B
+makeCacheMatrix <- function(x = matrix()) {#
+#
+i <- NULL #
+#
+	set <- function(y) { #----1#
+        x <<- y#
+        i <<- NULL#
+    }#
+#
+	get <- function() x #----2#
+#
+	setInverse <- function(inverse) i <<- inverse #----3#
+	getInverse <- function() i #----4#
+#
+	list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)#
+}
+cacheSolve <- function(x, ...) {#
+#
+        ## Return a matrix that is the inverse of 'x'#
+	i <- x$getinverse()#
+	if(!is.null(i)){ #
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x$get()#
+	i <- solve(data, ...)#
+	x$setinverse(i)#
+	i#
+}
+x <- matrix(1:6, nrow = 2, ncol = 3)
+x
+x <- matrix(c(1,2,3,4),2,2)
+x
+makeCacheMatrix(x)
+c <- makeCacheMatrix(x)
+cachesolve(c)
+cacheSolve(c)
+cacheSolve <- function(x, ...) {#
+#
+        ## Return a matrix that is the inverse of 'x'#
+	i <- x$getInverse()#
+	if(!is.null(i)){ #
+	        message("getting cached data")#
+	        return(i)#
+	}#
+	data <- x$get()#
+	i <- solve(data, ...)#
+	x$setInverse(i)#
+	i#
+}
+cacheSolve(c)
